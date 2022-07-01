@@ -9,8 +9,8 @@ herder = {
     'origin': 'https://juejin.cn',
     'content-type': 'application/json',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',
-    'cookie': os.environ.get('cookie')
-    # 'cookie': sys.argv[1]
+    # 'cookie': os.environ.get('cookie') #本地开发工具使用
+    'cookie': sys.argv[1]
 }
 
 
