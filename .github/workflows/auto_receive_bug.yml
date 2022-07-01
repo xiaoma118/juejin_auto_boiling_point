@@ -28,4 +28,4 @@ jobs:
       - name: 运行自动领取掘金bug
         run: |
           python auto_receive_bug.py '${{ secrets.COOKIE }}' '${{ secrets.WX_APP_ID }}' '${{ secrets.WX_APP_SECRET }}'
-          ${{ secrets.WX_COMPANY_ID }}' ${{ secrets.WORKWX_WEBHOOK }}'
+          ${{ secrets.WX_COMPANY_ID }} '${{ secrets.WORKWX_WEBHOOK }}'

@@ -22,6 +22,7 @@ def push_content(content='消息推送测试'):
     """
     access_token = get_access_token()
     url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s' % access_token
+    print(sys.argv)
     params = {
         "touser": "",
         "toparty": "1",
