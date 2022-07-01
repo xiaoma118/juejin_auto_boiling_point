@@ -22,7 +22,6 @@ def push_content(content='消息推送测试'):
     """
     access_token = get_access_token()
     url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s' % access_token
-    print(sys.argv)
     params = {
         "touser": "",
         "toparty": "1",
@@ -37,7 +36,6 @@ def push_content(content='消息推送测试'):
         "enable_duplicate_check": 0
     }
     resp = requests.post(url=url, json=params)
-    print(resp.json())
 
 
 def webhooks():
@@ -55,7 +53,6 @@ def webhooks():
         }
     }
     resp = requests.post(url=url, json=content)
-    print(resp.json())
 
 
 if __name__ == '__main__':
