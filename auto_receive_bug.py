@@ -13,6 +13,8 @@ herder = {
     'cookie': sys.argv[1]
 }
 
+user_own_bug = 0
+
 
 def get_bug_list():
     """
@@ -38,23 +40,26 @@ def auto_receive_bug(data):
     自动领取掘金BUG
     :return:
     """
+    global user_own_bug
     user_own_bug = get_user_own_bug()
     content = '掘金消息：\n本次操作领取了%s个bug\n当前bug数量：%s' % (len(data), user_own_bug)
-    if not data:
+    if data:
+        print('开始领取bug')
+        url = 'https://api.juejin.cn/user_api/v1/bugfix/collect?aid=2608&uuid=7052935898246088232'
+
+        for bug in data:
+            params = {
+                'bug_time': bug['bug_time'],
+                'bug_type': bug['bug_type']
+            }
+            resp = requests.post(url, json=params, headers=herder)
+            print('领取成功', resp.json()['err_msg'])
+        user_own_bug = get_user_own_bug()
+        push_content(content)
+    else:
         print('没有可领取的bug')
         push_content(content)
         return
-    print('开始领取bug')
-    url = 'https://api.juejin.cn/user_api/v1/bugfix/collect?aid=2608&uuid=7052935898246088232'
-
-    for bug in data:
-        params = {
-            'bug_time': bug['bug_time'],
-            'bug_type': bug['bug_type']
-        }
-        resp = requests.post(url, json=params, headers=herder)
-        print('领取成功', resp.json()['err_msg'])
-    push_content(content)
 
 
 def get_user_own_bug():
