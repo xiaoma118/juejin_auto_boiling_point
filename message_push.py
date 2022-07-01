@@ -27,7 +27,7 @@ def push_content(content='消息推送测试'):
         "toparty": "1",
         "totag": "",
         "msgtype": "text",
-        "agentid": int(sys.argv[4]),
+        "agentid": sys.argv[4],
         "text": {
             "content": content
         },
