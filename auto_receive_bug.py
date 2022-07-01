@@ -38,10 +38,10 @@ def auto_receive_bug(data):
     自动领取掘金BUG
     :return:
     """
+    user_own_bug = get_user_own_bug()
+    content = '掘金消息：\n本次操作领取了%s个bug\n当前bug数量：%s' % (len(data), user_own_bug)
     if not data:
         print('没有可领取的bug')
-        user_own_bug = get_user_own_bug()
-        content = '掘金消息：\n本次操作领取了%s个bug\n当前bug数量：%s' % (len(data), user_own_bug)
         push_content(content)
         return
     print('开始领取bug')
@@ -53,9 +53,7 @@ def auto_receive_bug(data):
             'bug_type': bug['bug_type']
         }
         resp = requests.post(url, json=params, headers=herder)
-        print('领取成功', resp.json()['success'])
-    user_own_bug = get_user_own_bug()
-    content = '掘金消息：\n本次操作领取了%s个bug\n当前bug数量：%s' % (len(data), user_own_bug)
+        print('领取成功', resp.json()['err_msg'])
     push_content(content)
 
 
