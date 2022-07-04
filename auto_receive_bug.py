@@ -55,6 +55,7 @@ def auto_receive_bug(data):
             resp = requests.post(url, json=params, headers=herder)
             print('领取成功', resp.json()['err_msg'])
         user_own_bug = get_user_own_bug()
+        content = '掘金消息：\n本次操作领取了%s个bug\n当前bug数量：%s' % (len(data), user_own_bug)
         push_content(content)
     else:
         print('没有可领取的bug')
