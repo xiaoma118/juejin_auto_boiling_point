@@ -19,14 +19,14 @@ def get_wan():
     # 获取多个标签url
     label_urls = rep.html.xpath('//*[@id="wrap"]/a/@href')
     # 随机一个标签
-    son_url = label_urls[random.randint(0, len(label_urls)-1)]
+    son_url = label_urls[random.randint(0, len(label_urls) - 1)]
     # 请求标签链接
-    rep = session.get(url=son_url, timeout=3)
+    rep = session.get(url=domain_name+son_url, timeout=3)
     time.sleep(1)
     # 解析标签链接 获取多个文案文章url
     article_urls = rep.html.xpath('/html/body/div[5]/div[2]/li/a/@href')
     # 随机一个文章
-    wz_url = article_urls[random.randint(0, len(article_urls)-1)]
+    wz_url = article_urls[random.randint(0, len(article_urls) - 1)]
     # 请求文章
     resp = session.get(url=domain_name + wz_url, timeout=3)
     # 解析文章
@@ -81,6 +81,3 @@ def auto_juejin():
 
 if __name__ == '__main__':
     auto_juejin()
-
-
-
